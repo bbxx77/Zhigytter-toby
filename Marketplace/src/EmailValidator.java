@@ -1,3 +1,4 @@
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,4 +10,5 @@ public class EmailValidator {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();
     }
+    
 }
