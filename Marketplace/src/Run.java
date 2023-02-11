@@ -52,7 +52,7 @@ public class Run {
                                         PasswordValidator.print(); // prints criteria for password
                                         System.out.print("Create a password: ");
                                         password = scan.next();
-                                        if (PasswordValidator.validate(password)) {
+                                        if (PasswordValidator.isValid(password)) {
                                             break;
                                         }
                                         System.out.println(ANSI_RED + "Error: Invalid password, try again." + ANSI_RESET);
@@ -100,7 +100,6 @@ public class Run {
                         product_id = scan.nextInt();
                         product = getProductById(conn ,product_id);
                         if (product.getId() == -1) {
-                            System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
                             break;
                         }
                         while(true) {
@@ -211,7 +210,7 @@ public class Run {
                 rs.getInt("quantity")
             );
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
         }
         return new Product();
     }

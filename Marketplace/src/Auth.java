@@ -66,7 +66,7 @@ public class Auth {
                         PasswordValidator.print();
                         System.out.print("Create a password: ");
                         password = scan.next();
-                        if (PasswordValidator.validate(password)) {
+                        if (PasswordValidator.isValid(password)) {
                             break;
                         }
                         System.out.println(ANSI_RED + "Error: Invalid password, try again." + ANSI_RESET);
