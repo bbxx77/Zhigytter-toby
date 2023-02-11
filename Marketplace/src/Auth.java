@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Auth {
@@ -17,8 +18,8 @@ public class Auth {
                 System.out.println("*************************");
                 System.out.print("Choose an option: ");
 
-                int choice = scan.nextInt();
-                if (choice == 1) {
+                String choice = scan.next();
+                if (Objects.equals(choice, "1")) {
                     String email, password;
                     while(true) {
                         System.out.print("Enter email: ");
@@ -45,7 +46,7 @@ public class Auth {
                         }
                         System.out.println(ANSI_RED + "Error: Sorry, try again." + ANSI_RESET);
                     }
-                } else if (choice == 2) {
+                } else if (Objects.equals(choice, "2")) {
                     System.out.print("Enter first name: ");
                     String firstName = scan.next();
                     System.out.print("Enter last name: ");
@@ -82,7 +83,7 @@ public class Auth {
                     signUpUser(conn, firstName, lastName, email, password);
                     int id = getId(conn, email, password);
                     return getUserById(conn, id);
-                } else if (choice == 3) {
+                } else if (Objects.equals(choice, "3")) {
                     System.out.println(ANSI_BLUE + "Bye!" + ANSI_RESET);
                     System.exit(0);
                 } else {

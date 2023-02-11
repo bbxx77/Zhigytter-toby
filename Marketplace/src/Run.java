@@ -1,7 +1,6 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -10,7 +9,6 @@ public class Run {
     public static final String ANSI_BOLD = "\033[1m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_ORANGE = "\u001B[38;5;208m";
-    public static final String ANSI_GREEN = "\u001B[32m";
 
     public static void main(Connection conn, User user) {
         Scanner scan = new Scanner(System.in);
@@ -27,142 +25,139 @@ public class Run {
             System.out.println(ANSI_RED + "6) Log out.\n" + ANSI_RESET);
             System.out.println("*************************");
 
-            try {
-                System.out.print("Enter option (1-6): ");
-                int choice = scan.nextInt();
-                switch (choice){
-                    case 0:
-                        while(!flag) {
-                            printUser(user);
-                            System.out.println("1) To Up the Balance");
-                            System.out.println("2) Change the password");
-                            System.out.println(ANSI_RED + "3) Delete the Account" + ANSI_RESET);
-                            System.out.println(ANSI_RED + "4) Back.\n" + ANSI_RESET);
-                            System.out.print("Enter option (1-4): ");
-                            int f = scan.nextInt();
-                            switch (f) {
-                                case 1:
-                                    System.out.print("Input amount: ");
-                                    float amount = scan.nextFloat();
-                                    user.topUpMoney(conn, amount);
-                                    break;
-                                case 2:
-                                    String password, confirmPassword;
-                                    while (true) {
-                                        PasswordValidator.print(); // prints criteria for password
-                                        System.out.print("Create a password: ");
-                                        password = scan.next();
-                                        if (PasswordValidator.isValid(password)) {
-                                            break;
-                                        }
-                                        System.out.println(ANSI_RED + "Error: Invalid password, try again." + ANSI_RESET);
-                                    }
-                                    while (true) {
-                                        System.out.print("Confirm a password: ");
-                                        confirmPassword = scan.next();
-                                        if (password.equals(confirmPassword)) {
-                                            break;
-                                        }
-                                        System.out.println(ANSI_RED + "Error: Passwords do not match." + ANSI_RESET);
-                                    }
-                                    user.updatePassword(conn, password);
-                                    break;
-                                case 3:
-                                    String answer;
-                                    System.out.print("Do you want to delete? (yes/no): ");
-                                    answer = scan.next();
-                                    if (Objects.equals(answer, "yes") || Objects.equals(answer, "y")) {
-                                        user.deleteAccount(conn);
-                                        flag = true;
+            System.out.print("Enter option (1-6): ");
+            String choice = scan.next();
+
+            switch (choice) {
+                case "0" -> {
+                    while (!flag) {
+                        printUser(user);
+                        System.out.println("1) To Up the Balance");
+                        System.out.println("2) Change the password");
+                        System.out.println(ANSI_RED + "3) Delete the Account" + ANSI_RESET);
+                        System.out.println(ANSI_RED + "4) Back.\n" + ANSI_RESET);
+                        System.out.print("Enter option (1-4): ");
+                        String f = scan.next();
+                        switch (f) {
+                            case "1":
+                                System.out.print("Input amount: ");
+                                float amount = scan.nextFloat();
+                                user.topUpMoney(conn, amount);
+                                break;
+                            case "2":
+                                String password, confirmPassword;
+                                while (true) {
+                                    PasswordValidator.print(); // prints criteria for password
+                                    System.out.print("Create a password: ");
+                                    password = scan.next();
+                                    if (PasswordValidator.isValid(password)) {
                                         break;
                                     }
-                                    break;
-                                case 4:
-                                    break;
-                                default:
-                                    System.out.println(ANSI_ORANGE + "Error: Invalid option, try again" + ANSI_RESET);
-                                    break;
-                            }
-                            if (f == 4) {
+                                    System.out.println(ANSI_RED + "Error: Invalid password, try again." + ANSI_RESET);
+                                }
+                                while (true) {
+                                    System.out.print("Confirm a password: ");
+                                    confirmPassword = scan.next();
+                                    if (password.equals(confirmPassword)) {
+                                        break;
+                                    }
+                                    System.out.println(ANSI_RED + "Error: Passwords do not match." + ANSI_RESET);
+                                }
+                                user.updatePassword(conn, password);
                                 break;
-                            }
-                            System.out.println("*************************");
+                            case "3":
+                                String answer;
+                                System.out.print("Do you want to delete? (yes/no): ");
+                                answer = scan.next();
+                                if (Objects.equals(answer, "yes") || Objects.equals(answer, "y")) {
+                                    user.deleteAccount(conn);
+                                    flag = true;
+                                    break;
+                                }
+                                break;
+                            case "4":
+                                break;
+                            default:
+                                System.out.println(ANSI_ORANGE + "Error: Invalid option, try again" + ANSI_RESET);
+                                break;
                         }
-                        break;
-                    case 1:
-                        printAllProducts(conn);
-                        break;
-                    case 2:
-                        int product_id;
-                        Product product;
-                        printAllProducts(conn);
-                        System.out.print(ANSI_BOLD + "Write ID of product: " + ANSI_RESET);
-                        product_id = scan.nextInt();
-                        product = getProductById(conn ,product_id);
-                        if (product.getId() == -1) {
+                        if (f.equals("4")) {
                             break;
                         }
-                        while(true) {
-                            printProduct(product);
-                            System.out.println("1) Buy");
-                            System.out.println("2) Add to Cart");
-                            System.out.println("3) Add to Wishlist");
-                            System.out.println(ANSI_RED + "4) Back.\n" + ANSI_RESET);
-                            System.out.print("Enter option (1-4): ");
-                            int f = scan.nextInt();
-                            switch (f) {
-                                case 1:
-                                    product.Buy(conn, user);
-                                    user = Auth.getUserById(conn, user.getId());
-                                    break;
-                                case 2:
-                                    product.addToCart(conn, user.getId());
-                                    user = Auth.getUserById(conn, user.getId());
-                                    break;
-                                case 3:
-                                    product.addToWishlist(conn, user.getId());
-                                    user = Auth.getUserById(conn, user.getId());
-                                    break;
-                                case 4:
-                                    break;
-                                default:
-                                    System.out.println(ANSI_RED + "Error: Invalid option, try again" + ANSI_RESET);
-                                    break;
-                            }
-                            if (f == 4) {
-                                break;
-                            }
-                            System.out.println("*************************");
-                        }
-                        break;
-                    case 3:
-                        System.out.println(ANSI_BOLD + "Your orders: " + ANSI_RESET);
-                        for (int productId : user.getOrders()) {
-                            printProduct(getProductById(conn, productId));
-                        }
-                        break;
-                    case 4:
-                        System.out.println(ANSI_BOLD + "Your wishlist: " + ANSI_RESET);
-                        for (int productId : user.getWishlist()) {
-                            printProduct(getProductById(conn, productId));
-                        }
-                        break;
-                    case 5:
-                        System.out.println(ANSI_BOLD + "Your cart: " + ANSI_RESET);
-                        for (int productId : user.getCart()) {
-                            printProduct(getProductById(conn, productId));
-                        }
-                        break;
-                    case 6:
-                        flag = true;
-                        break;
-                    default:
-                        System.out.println(ANSI_RED + "Error: Invalid option, try again" + ANSI_RESET);
-                        break;
+                        System.out.println("*************************");
+                    }
                 }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                case "1" -> printAllProducts(conn);
+                case "2" -> {
+                    String product_id;
+                    Product product;
+                    printAllProducts(conn);
+                    System.out.print(ANSI_BOLD + "Write ID of product: " + ANSI_RESET);
+                    product_id = scan.next();
+                    if (!isNumeric(product_id)) {
+                        System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
+                        break;
+                    }
+                    product = getProductById(conn, Integer.parseInt(product_id));
+
+                    if (product.getId() == -1) {
+                        break;
+                    }
+                    while (true) {
+                        printProduct(product);
+                        System.out.println("1) Buy");
+                        System.out.println("2) Add to Cart");
+                        System.out.println("3) Add to Wishlist");
+                        System.out.println(ANSI_RED + "4) Back.\n" + ANSI_RESET);
+                        System.out.print("Enter option (1-4): ");
+                        String f = scan.next();
+                        switch (f) {
+                            case "1":
+                                product.Buy(conn, user);
+                                user = Auth.getUserById(conn, user.getId());
+                                break;
+                            case "2":
+                                product.addToCart(conn, user.getId());
+                                user = Auth.getUserById(conn, user.getId());
+                                break;
+                            case "3":
+                                product.addToWishlist(conn, user.getId());
+                                user = Auth.getUserById(conn, user.getId());
+                                break;
+                            case "4":
+                                break;
+                            default:
+                                System.out.println(ANSI_RED + "Error: Invalid option, try again" + ANSI_RESET);
+                                break;
+                        }
+                        if (f.equals("4")) {
+                            break;
+                        }
+                        System.out.println("*************************");
+                    }
+                }
+                case "3" -> {
+                    System.out.println(ANSI_BOLD + "Your orders: " + ANSI_RESET);
+                    for (int productId : user.getOrders()) {
+                        printProduct(getProductById(conn, productId));
+                    }
+                }
+                case "4" -> {
+                    System.out.println(ANSI_BOLD + "Your wishlist: " + ANSI_RESET);
+                    for (int productId : user.getWishlist()) {
+                        printProduct(getProductById(conn, productId));
+                    }
+                }
+                case "5" -> {
+                    System.out.println(ANSI_BOLD + "Your cart: " + ANSI_RESET);
+                    for (int productId : user.getCart()) {
+                        printProduct(getProductById(conn, productId));
+                    }
+                }
+                case "6" -> flag = true;
+                default -> System.out.println(ANSI_RED + "Error: Invalid option, try again" + ANSI_RESET);
             }
+
             System.out.println("*************************");
         }
     }
@@ -223,4 +218,8 @@ public class Run {
         System.out.println("email: " + user.getEmail());
         printCash(user);
     }
+    private static boolean isNumeric(String str){
+        return str != null && str.matches("[0-9.]+");
+    }
+
 }
