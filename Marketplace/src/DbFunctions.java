@@ -15,7 +15,7 @@ public class DbFunctions {
                 System.out.println("\u001B[31m" + "Connection Failed!" + "\u001B[0m");
             }
         } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e);
         }
         return conn;
     }
@@ -23,12 +23,12 @@ public class DbFunctions {
     public void createTable(Connection conn, String table_name) {
         Statement statement;
         try {
-            String query = "create table " + table_name + "(id SERIAL, first_name varchar(200), last_name varchar(200), email varchar(200), password varchar(200), primary key(id));";
+            String query = "create table " + table_name + "(id SERIAL, name varchar(200), primary key(id));";
             statement = conn.createStatement();
             statement.executeUpdate(query);
             System.out.println("Table Created");
         } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e);
         }
     }
 
