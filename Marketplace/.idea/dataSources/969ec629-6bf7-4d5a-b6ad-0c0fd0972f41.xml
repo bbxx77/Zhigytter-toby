@@ -3,17 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.45">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-14778||-9223372036854775808|c|G
-14778||10|c|G
-14778||10|C|G
-14778||10|T|G</Grants>
-      <IntrospectionStateNumber>885</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1111</IntrospectionStateNumber>
       <ServerVersion>14.6</ServerVersion>
-      <StartupTime>1675919468</StartupTime>
+      <StartupTime>1676348916</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1408,7 +1400,7 @@ false posixrules
 14413||10|C|G
 14413||-9223372036854775808|U|G
 14413||10|U|G</Grants>
-      <IntrospectionStateNumber>885</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1111</IntrospectionStateNumber>
       <ObjectId>16386</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4847,7 +4839,7 @@ false posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>885</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1111</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4931,55 +4923,49 @@ false posixrules
       <SequenceId>16396</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="276" parent="268" name="first_name">
-      <DasType>varchar(200)|0s</DasType>
-      <Position>2</Position>
-      <StateNumber>746</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="277" parent="268" name="last_name">
+    <column id="276" parent="268" name="username">
       <DasType>varchar(200)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>746</StateNumber>
+      <StateNumber>897</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="278" parent="268" name="email">
+    <column id="277" parent="268" name="email">
       <DasType>varchar(200)|0s</DasType>
       <Position>4</Position>
       <StateNumber>746</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="279" parent="268" name="password">
+    <column id="278" parent="268" name="password">
       <DasType>varchar(200)|0s</DasType>
       <Position>5</Position>
       <StateNumber>746</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="280" parent="268" name="orders">
+    <column id="279" parent="268" name="orders">
       <DasType>integer[]|0s</DasType>
       <Position>6</Position>
       <StateNumber>774</StateNumber>
       <TypeId>1007</TypeId>
     </column>
-    <column id="281" parent="268" name="wallet">
+    <column id="280" parent="268" name="wallet">
       <DasType>real|0s</DasType>
       <Position>7</Position>
       <StateNumber>780</StateNumber>
       <TypeId>700</TypeId>
     </column>
-    <column id="282" parent="268" name="wishlist">
+    <column id="281" parent="268" name="wishlist">
       <DasType>integer[]|0s</DasType>
       <Position>8</Position>
       <StateNumber>784</StateNumber>
       <TypeId>1007</TypeId>
     </column>
-    <column id="283" parent="268" name="cart">
+    <column id="282" parent="268" name="cart">
       <DasType>integer[]|0s</DasType>
       <Position>10</Position>
       <StateNumber>808</StateNumber>
       <TypeId>1007</TypeId>
     </column>
-    <index id="284" parent="268" name="users_pkey">
+    <index id="283" parent="268" name="users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16403</ObjectId>
@@ -4988,7 +4974,7 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="285" parent="268" name="users_pkey">
+    <key id="284" parent="268" name="users_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16404</ObjectId>
       <Primary>1</Primary>

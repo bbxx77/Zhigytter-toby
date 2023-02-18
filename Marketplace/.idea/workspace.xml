@@ -4,14 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e39ce0f3-e055-4796-b2b1-df99b9da53d2" name="Changes" comment="auth working">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e39ce0f3-e055-4796-b2b1-df99b9da53d2" name="Changes" comment="v 1.0.0">
+      <change afterPath="$PROJECT_DIR$/src/Buyer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SignIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SignUp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/DbLogs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/Logs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/SignInLogs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/SignUpLogs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/style/Colors.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41/storage_v2/_src_/database/marketplacejava.7RZtHw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41/storage_v2/_src_/database/marketplacejava.7RZtHw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Marketplace/Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace/Auth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Marketplace/DbFunctions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Marketplace/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Marketplace/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Marketplace/Run.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace/Run.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Marketplace/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DbFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EmailValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PasswordValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PasswordValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Run.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Run.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +47,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2LSswjniIDlUTxE6cyIpiBBMMYw" />
   <component name="ProjectViewState">
@@ -52,6 +75,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -74,6 +98,7 @@
       <workItem from="1676081741054" duration="44000" />
       <workItem from="1676088454128" duration="781000" />
       <workItem from="1676094403785" duration="1289000" />
+      <workItem from="1676702995612" duration="1885000" />
     </task>
     <servers />
   </component>

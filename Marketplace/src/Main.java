@@ -1,19 +1,12 @@
-import java.sql.Connection;
-
+@SuppressWarnings("ALL")
 public class Main {
-    private static final String DB_USERNAME = "postgres";
-    private static final String DB_PASSWORD = "1234567";
-    private static final String DB_NAME = "marketplacejava";
-
     public static void main(String[] args)  {
-        DbFunctions db = new DbFunctions();
-        Connection conn = db.connect_to_db(DB_NAME, DB_USERNAME, DB_PASSWORD);
-        while(true) {
-            User user;
+        while (true) {
+            Buyer buyer;
             do {
-                user = Auth.main(conn);
-            } while (user.getId() == -1);
-            Run.main(conn, user);
+                buyer = Auth.auth();
+            } while (buyer.getId() == -1);
+            Run.main(buyer);
         }
     }
 }
