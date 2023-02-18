@@ -1,7 +1,6 @@
 import logs.SignInLogs;
 
 import java.util.Scanner;
-
 public class SignIn extends SignInLogs {
     static Scanner scan = new Scanner(System.in);
 
@@ -10,7 +9,7 @@ public class SignIn extends SignInLogs {
         while (true) {
             System.out.print("Enter email: ");
             email = scan.next();
-            if (!EmailValidator.validate(email)) {
+            if (!EmailValidator.isValid(email)) {
                 invalidEmail();
             } else if (db.checkEmail(email)) {
                 break;
