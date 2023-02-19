@@ -21,5 +21,5 @@ public class PasswordValidator extends Colors {
     public static boolean isValid(String password) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(password);
         return matcher.matches();
-    }
+    } 
 }
