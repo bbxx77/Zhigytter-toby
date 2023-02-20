@@ -92,7 +92,7 @@ public class Run extends Colors{
                         System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
                         break;
                     }
-                    product = DbFunctions.getProductById(conn, Integer.parseInt(product_id));
+                    product = new DbFunctions().getProductById(conn, Integer.parseInt(product_id));
                     if (product.getId() == -1) {
                         break;
                     }

@@ -76,19 +76,19 @@ public class Buyer extends User {
     public void printOrders(Connection conn) {
         System.out.println(ANSI_RED + "Your orders: " + ANSI_RESET);
         for (int productId : orders) {
-            System.out.print(DbFunctions.getProductById(conn, productId));
+            System.out.print(new DbFunctions().getProductById(conn, productId));
         }
     }
     public void printWishlist(Connection conn) {
         System.out.println(ANSI_BOLD + "Your wishlist: " + ANSI_RESET);
         for (int productId : wishlist) {
-            System.out.print(DbFunctions.getProductById(conn, productId));
+            System.out.print(new DbFunctions().getProductById(conn, productId));
         }
     }
     public void printCart(Connection conn) {
         System.out.println(ANSI_BOLD + "Your cart: " + ANSI_RESET);
         for (int productId : cart) {
-            System.out.print(DbFunctions.getProductById(conn, productId));
+            System.out.print(new DbFunctions().getProductById(conn, productId));
         }
     }
     public void topUpMoney(Connection conn, float amount) {
