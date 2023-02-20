@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class PasswordValidator extends Colors {
     private static final String passwordRequirements = ANSI_BLUE +
-        "1. Contains at least one digit (0-8).\n" +
+        "1. Contains at least one digit (0-9).\n" +
         "2. Contains at least one lowercase letter (a-z).\n" +
         "3. Contains at least one uppercase letter (A-Z).\n" +
         "4. Does not contain whitespace.\n" +
