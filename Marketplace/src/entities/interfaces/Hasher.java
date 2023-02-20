@@ -20,3 +20,6 @@ public interface Hasher {
         return "";
     }
 }
+
+
+

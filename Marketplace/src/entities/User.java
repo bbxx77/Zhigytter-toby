@@ -11,9 +11,7 @@ public class User implements Colors, Hasher {
     private String username;
     private String email;
 
-    public User() {
-
-    }
+    public User() {}
 
     public User(int id, String username, String email) {
         this.id = id;

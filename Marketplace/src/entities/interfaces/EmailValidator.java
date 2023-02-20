@@ -12,3 +12,4 @@ public interface EmailValidator {
         return matcher.find();
     }
 }
+
