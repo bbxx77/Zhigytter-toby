@@ -16,7 +16,7 @@ public class Auth extends Colors {
             String username, email, password, confirmPassword;
 
             switch (choice) {
-                case "1":
+                case "1" -> {
                     while (true) {
                         System.out.print("Enter email: ");
                         email = scan.next();
@@ -42,7 +42,8 @@ public class Auth extends Colors {
                         }
                         System.out.println(ANSI_RED + "Error: Sorry, try again." + ANSI_RESET);
                     }
-                case "2":
+                }
+                case "2" -> {
                     System.out.print("Enter Username: ");
                     username = scan.next();
                     while (true) {
@@ -76,13 +77,15 @@ public class Auth extends Colors {
                     db.signUpUser(conn, username, email, password);
                     int id = db.getId(conn, email, password);
                     return new Buyer(id, email, password);
-                case "3":
+                }
+                case "3" -> {
                     System.out.println(ANSI_BLUE + "Bye!" + ANSI_RESET);
                     System.exit(0);
-                default:
+                }
+                default -> {
                     System.out.println(ANSI_RED + "Error: Invalid option, try again" + ANSI_RESET);
                     System.out.println("*************************\n");
-                    break;
+                }
             }
         }
     }

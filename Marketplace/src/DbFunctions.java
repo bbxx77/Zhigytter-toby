@@ -19,7 +19,7 @@ public class DbFunctions extends Colors {
         }
         return conn;
     }
-    public static Product getProductById(Connection conn, int id) {
+    public Product getProductById(Connection conn, int id) {
         try {
             String query = String.format("select * from products where id='%d'", id);
             Statement statement = conn.createStatement();
