@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.Objects;
 import java.util.Scanner;
 
+
 public class Run implements Colors, EmailValidator, PasswordValidator {
 
     public  void main(Connection conn, Buyer buyer) {

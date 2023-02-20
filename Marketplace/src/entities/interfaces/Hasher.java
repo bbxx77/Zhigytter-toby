@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 public interface Hasher {
       default String hashPassword(String password) {
         try {
+            
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(password.getBytes());
             byte[] resultByteArray = messageDigest.digest();
