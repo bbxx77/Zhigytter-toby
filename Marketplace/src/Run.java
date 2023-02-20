@@ -1,15 +1,13 @@
-import logs.Logs;
 import java.sql.Connection;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Run extends Logs {
-    static Connection conn = db.connection();
+public class Run extends Colors{
 
-    public static void main(Buyer buyer) {
+    public static void main(Connection conn, Buyer buyer) {
         Scanner scan = new Scanner(System.in);
         boolean flag = false;
-        while(!flag) {
+        while (!flag) {
             buyer.printCash();
             System.out.println(ANSI_BOLD + "\nMarketplace functions:" + ANSI_RESET);
             System.out.println("0) My Profile");
@@ -49,7 +47,7 @@ public class Run extends Logs {
                                     if (PasswordValidator.isValid(password)) {
                                         break;
                                     }
-                                    invalidPassword();
+                                    System.out.println(ANSI_RED + "Error: Invalid password, try again." + ANSI_RESET);
                                 }
                                 while (true) {
                                     System.out.print("Confirm a password: ");
@@ -59,14 +57,14 @@ public class Run extends Logs {
                                     }
                                     System.out.println(ANSI_RED + "Error: Passwords do not match." + ANSI_RESET);
                                 }
-                                buyer.updatePassword(password);
+                                buyer.updatePassword(conn, password);
                                 break;
                             case "3":
                                 String answer;
                                 System.out.print("Do you want to delete? (yes/no): ");
                                 answer = scan.next();
                                 if (Objects.equals(answer, "yes") || Objects.equals(answer, "y")) {
-                                    buyer.deleteUser();
+                                    buyer.deleteUser(conn);
                                     flag = true;
                                     break;
                                 }
@@ -74,7 +72,7 @@ public class Run extends Logs {
                             case "4":
                                 break;
                             default:
-                                invalidOption();
+                                System.out.println(ANSI_ORANGE + "Error: Invalid option, try again" + ANSI_RESET);
                                 break;
                         }
                         if (f.equals("4")) {
@@ -83,23 +81,23 @@ public class Run extends Logs {
                         System.out.println("*************************");
                     }
                 }
-                case "1" -> Product.printAllProducts(conn);
+                case "1" -> new Product().printAllProducts(conn);
                 case "2" -> {
                     String product_id;
-                    Product product;
-                    Product.printAllProducts(conn);
+                    Product product = new Product();
+                    product.printAllProducts(conn);
                     System.out.print(ANSI_BOLD + "Write ID of product: " + ANSI_RESET);
                     product_id = scan.next();
-                    if (!isNumeric(product_id)) {
+                    if (!(product_id != null && product_id.matches("[0-9.]+"))) {
                         System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
                         break;
                     }
-                    product = db.getProductById(Integer.parseInt(product_id));
+                    product = DbFunctions.getProductById(conn, Integer.parseInt(product_id));
                     if (product.getId() == -1) {
                         break;
                     }
                     while (true) {
-                        product.printProduct();
+                        System.out.println(product);
                         System.out.println("1) Buy");
                         System.out.println("2) Add to Cart");
                         System.out.println("3) Add to Wishlist");
@@ -119,7 +117,7 @@ public class Run extends Logs {
                             case "4":
                                 break;
                             default:
-                                invalidOption();
+                                System.out.println(ANSI_RED + "Error: Invalid option, try again" + ANSI_RESET);
                                 break;
                         }
                         if (f.equals("4")) {
@@ -128,16 +126,13 @@ public class Run extends Logs {
                         System.out.println("*************************");
                     }
                 }
-                case "3" -> buyer.printOrders();
-                case "4" -> buyer.printWishlist();
-                case "5" -> buyer.printCart();
+                case "3" -> buyer.printOrders(conn);
+                case "4" -> buyer.printWishlist(conn);
+                case "5" -> buyer.printCart(conn);
                 case "6" -> flag = true;
-                default -> invalidOption();
+                default -> System.out.println(ANSI_RED + "Error: Invalid option, try again" + ANSI_RESET);
             }
             System.out.println("*************************");
         }
-    }
-    private static boolean isNumeric(String str){
-        return str != null && str.matches("[0-9.]+");
     }
 }
