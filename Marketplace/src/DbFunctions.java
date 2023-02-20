@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DbFunctions {
+public class DbFunctions extends Colors {
     public Connection connect_to_db(String dbname, String user, String pass) {
         Connection conn = null;
         try {
@@ -19,88 +19,101 @@ public class DbFunctions {
         }
         return conn;
     }
-
-    public void createTable(Connection conn, String table_name) {
-        Statement statement;
+    public static Product getProductById(Connection conn, int id) {
         try {
-            String query = "create table " + table_name + "(id SERIAL, first_name varchar(200), last_name varchar(200), email varchar(200), password varchar(200), primary key(id));";
-            statement = conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println("Table Created");
+            String query = String.format("select * from products where id='%d'", id);
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return new Product(
+                    id,
+                    rs.getString("name"),
+                    rs.getFloat("price"),
+                    rs.getInt("quantity")
+            );
+        } catch (Exception e) {
+            System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
+        }
+        return new Product();
+    }
+    public boolean checkEmail(Connection conn, String email) {
+        try {
+            String query = String.format("select * from %s where email='%s'", "users", email);
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            if (rs.next()) {
+                return true;
+            }
         } catch (Exception e) {
             e.getStackTrace();
         }
+        return false;
     }
-
-    public void insert_row(Connection conn, String table_name, String first_name, String last_name, String email, String password) {
-        Statement statement;
+    public boolean checkUser(Connection conn, String email, String password) {
         try {
-            String query = String.format("insert into %s(first_name, last_name, email, password) values('%s', '%s', '%s', '%s');", table_name, first_name, last_name, email, password);
-            statement = conn.createStatement();
+            String query = String.format("select * from %s where email='%s' and password='%s'", "users", email, password);
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        return false;
+    }
+    public void signUpUser(Connection conn, String username, String email, String password){
+        try {
+            String query = String.format("insert into users (username, email, password, orders, wishlist, cart, wallet) values('%s', '%s', '%s', ARRAY[]::integer[], ARRAY[]::integer[], ARRAY[]::integer[], 0);", username, email, password);
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(query);
+            System.out.println(ANSI_GREEN + "Registration successful!" + ANSI_RESET);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public int getId(Connection conn, String email, String password) {
+        try {
+            String query = String.format("select * from %s where email='%s' and password='%s'", "users", email, password);
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        return -1;
+    }
+    public Buyer getBuyerById(Connection conn, int id) {
+        try {
+            String query = String.format("select * from users where id='%d'", id);
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            if(rs.next()) {
+                return new Buyer(
+                    id,
+                    rs.getString("username"),
+                    rs.getString("email"),
+                    (Integer[]) rs.getArray("orders").getArray(),
+                    (Integer[]) rs.getArray("cart").getArray(),
+                    (Integer[]) rs.getArray("wishlist").getArray(),
+                    rs.getFloat("wallet")
+                );
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return new Buyer();
+    }
+    public void insertProduct(Connection conn, String name, double price, int quantity) {
+        try {
+            String query = String.format("insert into products(name, price, quantity) values('%s', '%s', '%s');", name, price, quantity);
+            Statement statement = conn.createStatement();
             statement.executeUpdate(query);
             System.out.println("Row inserted");
         } catch (Exception e) {
-            e.getStackTrace();
-        }
-    }
-
-    public void read_data(Connection conn, String table_name) {
-        Statement statement;
-        ResultSet rs = null;
-        try {
-            String query = String.format("select * from %s", table_name);
-            statement = conn.createStatement();
-            rs = statement.executeQuery(query);
-            while (rs.next()) {
-                System.out.println(rs.getString("id") + " ");
-                System.out.println(rs.getString("first_name") + " ");
-                System.out.println(rs.getString("last_name") + " ");
-                System.out.println(rs.getString("email") + " ");
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-    }
-
-    public void update_firstName(Connection conn, String table_name, int id, String new_firstName) {
-        Statement statement;
-        try {
-            String query = String.format("update %s set first_name='%s' where id='%d'", table_name, new_firstName, id);
-            statement = conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println("Data Updated");
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-    }
-
-    public void search_by_name(Connection conn, String table_name, String first_name, String last_name) {
-        Statement statement;
-        ResultSet rs = null;
-        try {
-            String query = String.format("select * from %s where first_name='%s' and last_name='%s'", table_name, first_name, last_name);
-            statement = conn.createStatement();
-            rs = statement.executeQuery(query);
-            while (rs.next()) {
-                System.out.print(rs.getString("id") + " ");
-                System.out.print(rs.getString("first_name") + " ");
-                System.out.print(rs.getString("last_name") + " ");
-                System.out.println(rs.getString("email"));
-
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-    }
-
-    public void search_by_id(Connection conn, String table_name, int id) {
-        Statement statement;
-        ResultSet rs = null;
-        try {
-            String query = String.format("select * from %s where id='%d'", table_name, id);
-            statement = conn.createStatement();
-        } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e);
         }
     }
 }

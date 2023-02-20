@@ -9,11 +9,11 @@ public class Main {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db(DB_NAME, DB_USERNAME, DB_PASSWORD);
         while(true) {
-            User user;
+            Buyer buyer;
             do {
-                user = Auth.main(conn);
-            } while (user.getId() == -1);
-            Run.main(conn, user);
+                buyer = new Auth().main(conn, db);
+            } while (buyer.getId() == -1);
+            Run.main(conn, buyer);
         }
     }
 }

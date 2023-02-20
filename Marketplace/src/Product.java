@@ -1,83 +1,51 @@
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Product {
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_RESET = "\u001B[0m";
-
+public class Product extends Colors {
     private int id = -1;
     private String name;
     private float price;
     private int quantity;
 
-    public Product() {
+    public Product() {}
 
-    }
     public Product(int id, String name, float price, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
-
-    public void addToCart(Connection conn, int user_id) {
-        Statement statement;
+    public void printAllProducts(Connection conn) {
+        System.out.println("+----+--------+-------+--------+");
+        System.out.println("| \033[1mID\u001B[0m | \033[1mName\u001B[0m   | \033[1mPrice\u001B[0m  | \033[1mQuantity\u001B[0m |");
+        System.out.println("+----+--------+-------+--------+");
         try {
-            String query = String.format("update users set cart = cart || %s where id=%s", id, user_id);
-            statement = conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println(ANSI_GREEN + name + " added to cart." + ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-    public void addToWishlist(Connection conn, int user_id) {
-        Statement statement;
-        try {
-            String query = String.format("update users set wishlist = wishlist || %s where id=%s", id, user_id);
-            statement = conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println(ANSI_GREEN + name + " added to wishlist." + ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-    public void Buy(Connection conn, User user) {
-        Statement statement;
-        try {
-            if (user.getWallet() >= price) {
-                if (quantity > 0) {
-                    String query = String.format("update users set orders = orders || %s where id=%s", id, user.getId());
-                    statement = conn.createStatement();
-                    statement.executeUpdate(query);
-                    System.out.println(ANSI_GREEN + "You have successfully purchased." + ANSI_RESET);
-                    this.quantity -= 1;
-                    user.withdrawMoney(conn, price);
-                    user = new User(
-                        user.getId(),
-                        user.getFirstName(),
-                        user.getLastName(),
-                        user.getEmail(),
-                        user.getPassword(),
-                        user.getOrders(),
-                        user.getWishlist(),
-                        user.getCart(),
-                        user.getWallet()
-                    );
-                } else {
-                    System.out.println(ANSI_RED + "Error: product is ended up" + ANSI_RESET);
-                }
-            } else {
-                System.out.println(ANSI_RED + "Error: Insufficient funds" + ANSI_RESET);
+            String query = "select * from products";
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while(rs.next()) {
+                System.out.print(new Product(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getFloat("price"),
+                    rs.getInt("quantity")
+                ));
             }
         } catch (Exception e) {
             System.out.println(e);
         }
+        System.out.println("+----+--------+-------+--------+");
     }
-
     int getId() {return id;}
     String getName() {return name;}
     float getPrice() {return price;}
     int getQuantity() {return quantity;}
+    public void setQuantity(int amount) {quantity = amount;}
+    public String toString() {
+        return String.format("| %2d  |\u001B[32m %-6s \u001B[0m|\u001B[34m %5.2f$ \u001B[0m|\u001B[38;5;208m %7d \u001B[0m|\n", id,
+            name,
+            price,
+            quantity);
+    }
 }
