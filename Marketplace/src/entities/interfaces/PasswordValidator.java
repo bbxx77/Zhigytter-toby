@@ -5,6 +5,7 @@ import entities.interfaces.Colors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public interface PasswordValidator {
     String passwordRequirements =
         "1. Contains at least one digit (0-9).\n" +

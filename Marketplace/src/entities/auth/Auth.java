@@ -100,3 +100,4 @@ public class Auth implements Colors, EmailValidator, PasswordValidator {
 }
 
 
+
