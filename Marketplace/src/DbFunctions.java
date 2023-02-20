@@ -15,7 +15,7 @@ public class DbFunctions extends Colors {
                 System.out.println("\u001B[31m" + "Connection Failed!" + "\u001B[0m");
             }
         } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e);
         }
         return conn;
     }
