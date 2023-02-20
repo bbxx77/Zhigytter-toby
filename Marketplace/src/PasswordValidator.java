@@ -1,13 +1,9 @@
+import style.Colors;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PasswordValidator {
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_ORANGE = "\u001B[38;5;208m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_RESET = "\u001B[0m";
-
+public class PasswordValidator extends Colors {
     private static final String passwordRequirements = ANSI_BLUE +
         "1. Contains at least one digit (0-9).\n" +
         "2. Contains at least one lowercase letter (a-z).\n" +
