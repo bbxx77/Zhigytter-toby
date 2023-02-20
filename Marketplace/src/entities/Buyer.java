@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class Buyer extends User {
     private ArrayList<Integer> orders = new ArrayList<>();
     private ArrayList<Integer> wishlist = new ArrayList<>();

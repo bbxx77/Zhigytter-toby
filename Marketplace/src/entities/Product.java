@@ -11,9 +11,7 @@ public class Product implements Colors {
     private String name;
     private float price;
     private int quantity;
-
     public Product() {}
-
     public Product(int id, String name, float price, int quantity) {
         this.id = id;
         this.name = name;
@@ -41,7 +39,6 @@ public class Product implements Colors {
         }
         System.out.println("+----+--------+-------+--------+");
     }
-
     public String toString() {
         return String.format("| %2d  |\u001B[32m %-6s \u001B[0m|\u001B[34m %5.2f$ \u001B[0m|\u001B[38;5;208m %7d \u001B[0m|\n", id,
             name,

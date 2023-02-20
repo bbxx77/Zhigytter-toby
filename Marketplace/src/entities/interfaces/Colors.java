@@ -8,4 +8,3 @@ public interface Colors {
     String ANSI_RESET = "\u001B[0m";
     String ANSI_BOLD = "\033[1m";
 }
-
