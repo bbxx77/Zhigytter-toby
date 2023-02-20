@@ -1,0 +1,44 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2_20_23,_6_50_PM_[Changes]" date="1676897401343" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_20_23,_6_50_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2/20/23, 6:50 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/Run.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/EmailValidator.class" />
+    <option name="AFTER_PATH" value="out/production/Marketplace/EmailValidator.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_20_23,_6_50_PM_[Changes]/EmailValidator.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/SignIn.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/Main.class" />
+    <option name="AFTER_PATH" value="out/production/Marketplace/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_20_23,_6_50_PM_[Changes]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/SignUp.class" />
+    <option name="AFTER_PATH" value="out/production/Marketplace/SignUp.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_20_23,_6_50_PM_[Changes]/SignUp.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/db.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/User.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Marketplace/Auth.class" />
+    <option name="AFTER_PATH" value="out/production/Marketplace/Auth.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_20_23,_6_50_PM_[Changes]/Auth.class" />
+  </binary>
+</changelist>

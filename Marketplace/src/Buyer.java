@@ -23,12 +23,6 @@ public class Buyer extends User {
         this.cart = new ArrayList<>(Arrays.asList(cart));
         this.wishlist = new ArrayList<>(Arrays.asList(wishlist));
     }
-
-    public ArrayList<Integer> getOrders() {return orders;}
-    public ArrayList<Integer> getWishlist() {return wishlist;}
-    public ArrayList<Integer> getCart() {return cart;}
-    public float getWallet() {return wallet;}
-
     public void addToCart(Connection conn, Product product) {
         try {
             String query = String.format("update users set cart = cart || %s where id=%s", product.getId(), getId());
@@ -79,22 +73,22 @@ public class Buyer extends User {
             System.out.println(e);
         }
     }
-    public void printOrders() {
+    public void printOrders(Connection conn) {
         System.out.println(ANSI_RED + "Your orders: " + ANSI_RESET);
         for (int productId : orders) {
-            db.getProductById(productId).printProduct();
+            System.out.print(DbFunctions.getProductById(conn, productId));
         }
     }
-    public void printWishlist() {
+    public void printWishlist(Connection conn) {
         System.out.println(ANSI_BOLD + "Your wishlist: " + ANSI_RESET);
         for (int productId : wishlist) {
-            db.getProductById(productId).printProduct();
+            System.out.print(DbFunctions.getProductById(conn, productId));
         }
     }
-    public void printCart() {
+    public void printCart(Connection conn) {
         System.out.println(ANSI_BOLD + "Your cart: " + ANSI_RESET);
         for (int productId : cart) {
-            db.getProductById(productId).printProduct();
+            System.out.print(DbFunctions.getProductById(conn, productId));
         }
     }
     public void topUpMoney(Connection conn, float amount) {
@@ -125,4 +119,10 @@ public class Buyer extends User {
     public String toString() {
         return "Username: " + getUsername() + "\n" + "email: " + getEmail() + "\n" + ANSI_BOLD + "Your cash: " + wallet + "$" + ANSI_RESET;
     }
+
+    public ArrayList<Integer> getOrders() {return orders;}
+    public ArrayList<Integer> getWishlist() {return wishlist;}
+    public ArrayList<Integer> getCart() {return cart;}
+    public float getWallet() {return wallet;}
+
 }

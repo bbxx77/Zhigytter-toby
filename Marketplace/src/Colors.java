@@ -1,4 +1,3 @@
-package style;
 
 public class Colors {
     public static final String ANSI_RED = "\u001B[31m";
