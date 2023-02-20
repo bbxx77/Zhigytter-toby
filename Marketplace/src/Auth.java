@@ -24,7 +24,7 @@ public class Auth {
                     while(true) {
                         System.out.print("Enter email: ");
                         email = scan.next();
-                        if (!EmailValidator.validate(email)) {
+                        if (!EmailValidator.isValid(email)) {
                             System.out.println(ANSI_RED + "Error: Invalid email, try again." + ANSI_RESET);
                         } else if (checkEmail(conn, email)) {
                             break;
@@ -57,7 +57,7 @@ public class Auth {
                         email = scan.next();
                         if (checkEmail(conn, email)) {
                             System.out.println(ANSI_ORANGE + "Error: Current email exist, try again." + ANSI_RESET);
-                        } else if (!EmailValidator.validate(email)) {
+                        } else if (!EmailValidator.isValid(email)) {
                             System.out.println(ANSI_RED + "Error: Invalid email, try again." + ANSI_RESET);
                         } else {
                             break;
