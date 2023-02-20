@@ -8,12 +8,5 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/marketplacejava</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="marketplacejava@localhost [2]" uuid="63083293-d2be-4604-bf42-e84cb63de8d5">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/marketplacejava</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
   </component>
 </project>
