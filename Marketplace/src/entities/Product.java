@@ -1,8 +1,12 @@
+package entities;
+
+import entities.interfaces.Colors;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Product extends Colors {
+public class Product implements Colors {
     private int id = -1;
     private String name;
     private float price;
@@ -37,15 +41,20 @@ public class Product extends Colors {
         }
         System.out.println("+----+--------+-------+--------+");
     }
-    int getId() {return id;}
-    String getName() {return name;}
-    float getPrice() {return price;}
-    int getQuantity() {return quantity;}
-    public void setQuantity(int amount) {quantity = amount;}
+
     public String toString() {
         return String.format("| %2d  |\u001B[32m %-6s \u001B[0m|\u001B[34m %5.2f$ \u001B[0m|\u001B[38;5;208m %7d \u001B[0m|\n", id,
             name,
             price,
             quantity);
     }
+
+    public int getId() {return id;}
+    public String getName() {return name;}
+    public float getPrice() {return price;}
+    public int getQuantity() {return quantity;}
+    public void setId(int id) {this.id = id;}
+    public void setName(String name) {this.name = name;}
+    public void setPrice(float price) {this.price = price;}
+    public void setQuantity(int quantity) {quantity = quantity;}
 }
