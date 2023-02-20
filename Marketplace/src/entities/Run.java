@@ -1,10 +1,17 @@
+package entities;
+
+import db.Database;
+import entities.interfaces.EmailValidator;
+import entities.interfaces.PasswordValidator;
+import entities.interfaces.Colors;
+
 import java.sql.Connection;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Run extends Colors{
+public class Run implements Colors, EmailValidator, PasswordValidator {
 
-    public static void main(Connection conn, Buyer buyer) {
+    public  void main(Connection conn, Buyer buyer) {
         Scanner scan = new Scanner(System.in);
         boolean flag = false;
         while (!flag) {
@@ -41,10 +48,10 @@ public class Run extends Colors{
                             case "2":
                                 String password, confirmPassword;
                                 while (true) {
-                                    PasswordValidator.print(); // prints criteria for password
+                                    System.out.println(passwordRequirements);
                                     System.out.print("Create a password: ");
                                     password = scan.next();
-                                    if (PasswordValidator.isValid(password)) {
+                                    if (isValidPassword(password)) {
                                         break;
                                     }
                                     System.out.println(ANSI_RED + "Error: Invalid password, try again." + ANSI_RESET);
@@ -92,7 +99,7 @@ public class Run extends Colors{
                         System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
                         break;
                     }
-                    product = new DbFunctions().getProductById(conn, Integer.parseInt(product_id));
+                    product = new Database().getProductById(conn, Integer.parseInt(product_id));
                     if (product.getId() == -1) {
                         break;
                     }

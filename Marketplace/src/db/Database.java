@@ -1,10 +1,14 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+package db;
 
-public class DbFunctions extends Colors {
-    public Connection connect_to_db(String dbname, String user, String pass) {
+import entities.Buyer;
+import entities.Product;
+import entities.interfaces.Colors;
+import entities.interfaces.Hasher;
+
+import java.sql.*;
+
+public class Database implements Colors, Hasher {
+    public Connection connect(String dbname, String user, String pass) {
         Connection conn = null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -20,21 +24,21 @@ public class DbFunctions extends Colors {
         return conn;
     }
     public Product getProductById(Connection conn, int id) {
+        Product product = new Product();
         try {
             String query = String.format("select * from products where id='%d'", id);
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            return new Product(
-                    id,
-                    rs.getString("name"),
-                    rs.getFloat("price"),
-                    rs.getInt("quantity")
-            );
+            product.setId(id);
+            product.setName(rs.getString("name"));
+            product.setPrice(rs.getFloat("price"));
+            product.setQuantity(rs.getInt("quantity"));
+            return product;
         } catch (Exception e) {
             System.out.println(ANSI_RED + "Error: Invalid product ID." + ANSI_RESET);
         }
-        return new Product();
+        return product;
     }
     public boolean checkEmail(Connection conn, String email) {
         try {
@@ -49,39 +53,32 @@ public class DbFunctions extends Colors {
         }
         return false;
     }
-    public boolean checkUser(Connection conn, String email, String password) {
+    public void signUpUser(Connection conn, String username, String email, String password) throws SQLException {
         try {
-            String query = String.format("select * from %s where email='%s' and password='%s'", "users", email, password);
+            String hashedPassword = hashPassword(password);
+
+            String query = String.format("insert into users (username, email, password, orders, wishlist, cart, wallet) values('%s', '%s', '%s', ARRAY[]::integer[], ARRAY[]::integer[], ARRAY[]::integer[], 0);", username, email, hashedPassword);
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            if (rs.next()) {
-                return true;
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-        return false;
-    }
-    public void signUpUser(Connection conn, String username, String email, String password){
-        try {
-            String query = String.format("insert into users (username, email, password, orders, wishlist, cart, wallet) values('%s', '%s', '%s', ARRAY[]::integer[], ARRAY[]::integer[], ARRAY[]::integer[], 0);", username, email, password);
-            Statement statement = conn.createStatement();
+
             statement.executeUpdate(query);
             System.out.println(ANSI_GREEN + "Registration successful!" + ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
-    public int getId(Connection conn, String email, String password) {
+    public int checkLogin(Connection conn, String email, String password) throws  SQLException {
         try {
-            String query = String.format("select * from %s where email='%s' and password='%s'", "users", email, password);
+            String hashedPassword = hashPassword(password);
+
+            String query = String.format("select * from users where email='%s' and password='%s'", email, hashedPassword);
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) {
                 return rs.getInt("id");
             }
-        } catch (Exception e) {
-            e.getStackTrace();
+            return -1;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
         return -1;
     }
