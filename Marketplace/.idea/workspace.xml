@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e39ce0f3-e055-4796-b2b1-df99b9da53d2" name="Changes" comment="v 1.0.5 SOLID implemented">
-      <change afterPath="$PROJECT_DIR$/src/entities/interfaces/Colors.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/interfaces/Hasher.java" afterDir="false" />
+    <list default="true" id="e39ce0f3-e055-4796-b2b1-df99b9da53d2" name="Changes" comment="v 1.0.6 SOLID implemented">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41/storage_v2/_src_/database/marketplacejava.7RZtHw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/969ec629-6bf7-4d5a-b6ad-0c0fd0972f41/storage_v2/_src_/database/marketplacejava.7RZtHw/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/auth/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Buyer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Colors.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DbFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EmailValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/interfaces/EmailValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PasswordValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/interfaces/PasswordValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Run.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Run.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/interfaces/Hasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/interfaces/Hasher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,38 +33,42 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2LSswjniIDlUTxE6cyIpiBBMMYw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/sogeking/Downloads/postgresql-42.5.3.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/sogeking/Downloads/postgresql-42.5.3.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -91,7 +83,8 @@
       <workItem from="1676081741054" duration="44000" />
       <workItem from="1676088454128" duration="781000" />
       <workItem from="1676094403785" duration="1289000" />
-      <workItem from="1676912536699" duration="3489000" />
+      <workItem from="1676912536699" duration="3795000" />
+      <workItem from="1676916566291" duration="4396000" />
     </task>
     <task id="LOCAL-00001" summary="v 1.0.2 SOLID implemented">
       <created>1676903148111</created>
@@ -121,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676904985297</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v 1.0.6 SOLID implemented">
+      <created>1676916322539</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676916322539</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +155,7 @@
     <MESSAGE value="v 1.0.3 SOLID implemented" />
     <MESSAGE value="v 1.0.4 SOLID implemented" />
     <MESSAGE value="v 1.0.5 SOLID implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="v 1.0.5 SOLID implemented" />
+    <MESSAGE value="v 1.0.6 SOLID implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="v 1.0.6 SOLID implemented" />
   </component>
 </project>
