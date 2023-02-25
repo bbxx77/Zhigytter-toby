@@ -20,7 +20,7 @@ public class User implements Colors, Hasher {
     }
     public void updatePassword(Connection conn, String new_password) {
         try {
-            String hashed_new_password = hashPassword(new_password);
+            String hashed_new_password = getHashPassword(new_password);
             String query = String.format("update users set password='%s' where id='%d'", hashed_new_password, id);
             Statement statement = conn.createStatement();
             statement.executeUpdate(query);
