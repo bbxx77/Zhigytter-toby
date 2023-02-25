@@ -55,7 +55,7 @@ public class Database implements Colors, Hasher {
     }
     public void signUpUser(Connection conn, String username, String email, String password) throws SQLException {
         try {
-            String hashedPassword = hashPassword(password);
+            String hashedPassword = getHashPassword(password);
 
             String query = String.format("insert into users (username, email, password, orders, wishlist, cart, wallet) values('%s', '%s', '%s', ARRAY[]::integer[], ARRAY[]::integer[], ARRAY[]::integer[], 0);", username, email, hashedPassword);
             Statement statement = conn.createStatement();
@@ -68,7 +68,7 @@ public class Database implements Colors, Hasher {
     }
     public int checkLogin(Connection conn, String email, String password) throws  SQLException {
         try {
-            String hashedPassword = hashPassword(password);
+            String hashedPassword = getHashPassword(password);
 
             String query = String.format("select * from users where email='%s' and password='%s'", email, hashedPassword);
             Statement statement = conn.createStatement();
