@@ -1,25 +1,31 @@
-import entities.auth.Auth;
+import controllers.BuyerController;
+import controllers.ProductController;
+import controllers.UserController;
+import data.interfaces.IDB;
+import data.PostgresDB;
 import entities.Buyer;
-import db.Database;
-import entities.Run;
-
-import java.sql.Connection;
-import java.sql.SQLException;
+import entities.Product;
+import repositories.BuyerRepository;
+import repositories.ProductRepository;
+import repositories.UserRepository;
+import repositories.auth.Authentification;
 
 public class Main {
-    private static final String DB_USERNAME = "postgres";
-    private static final String DB_PASSWORD = "1234567";
-    private static final String DB_NAME = "marketplacejava";
-
-    public static void main(String[] args) throws SQLException {
-        Database db = new Database();
-        Connection conn = db.connect(DB_NAME, DB_USERNAME, DB_PASSWORD);
-        while(true) {
+    public static void main(String[] args) {
+        IDB db = new PostgresDB();
+        while (true) {
             Buyer buyer;
+
             do {
-                buyer = new Auth().main(conn, db);
+                buyer = new Authentification(db).auth();
             } while (buyer.getId() == -1);
-            new Run().main(conn, buyer);
+
+            ProductController productController = new ProductController(new ProductRepository(db, new Product()));
+            BuyerController buyerController = new BuyerController(new BuyerRepository(db, buyer));
+            UserController userController = new UserController(new UserRepository(db, buyer));
+
+            MyApplication app = new MyApplication(userController, buyerController, productController);
+            app.start();
         }
     }
 }

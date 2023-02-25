@@ -1,13 +1,7 @@
 package entities;
 
-import db.Database;
-import entities.interfaces.Colors;
-
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 
 public class Buyer extends User {
     private ArrayList<Integer> orders = new ArrayList<>();
@@ -18,10 +12,12 @@ public class Buyer extends User {
     public Buyer() {
         super();
     }
+
     public Buyer(int id, String username, String email) {
         super(id, username, email);
         wallet = 0;
     }
+
     public Buyer(int id, String username, String email, Integer[] orders, Integer[] cart, Integer[] wishlist, float wallet) {
         super(id, username, email);
         this.wallet = wallet;
@@ -29,109 +25,41 @@ public class Buyer extends User {
         this.cart = new ArrayList<>(Arrays.asList(cart));
         this.wishlist = new ArrayList<>(Arrays.asList(wishlist));
     }
-    public void addToCart(Connection conn, Product product) {
-        try {
-            String query = String.format("update users set cart = cart || %s where id=%s", product.getId(), getId());
-            Statement statement = conn.createStatement();
-            statement.executeUpdate(query);
-            cart.add(product.getId());
-            System.out.println(Colors.ANSI_GREEN + product.getName() + " added to cart." + Colors.ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-    public void addToWishlist(Connection conn, Product product) {
-        try {
-            String query = String.format("update users set wishlist = wishlist || %s where id=%s", product.getId(), getId());
-            Statement statement = conn.createStatement();
-            statement.executeUpdate(query);
-            wishlist.add(product.getId());
-            System.out.println(Colors.ANSI_GREEN + product.getName() + " added to wishlist." + Colors.ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-    public void Buy(Connection conn, Product product) {
-        try {
-            if (wallet >= product.getPrice()) {
-                if (product.getQuantity() > 0) {
-                    //update entities.User orders
-                    String query = String.format("update users set orders = orders || %s where id=%s", product.getId(), getId());
-                    Statement statement = conn.createStatement();
-                    statement.executeUpdate(query);
-                    System.out.println(Colors.ANSI_GREEN + "You have successfully purchased." + Colors.ANSI_RESET);
-                    product.setQuantity(product.getQuantity() - 1);
-                    withdrawMoney(conn, product.getPrice());
-                    orders.add(product.getId());
 
-                    //update entities.Product quantity
-                    query = String.format("update products set quantity = %d where id=%s", product.getQuantity(), product.getId());
-                    statement = conn.createStatement();
-                    statement.executeUpdate(query);
+    public void setOrders(ArrayList<Integer> orders) {
+        this.orders = orders;
+    }
 
-                } else {
-                    System.out.println(Colors.ANSI_RED + "Error: product is ended up" + Colors.ANSI_RESET);
-                }
-            } else {
-                System.out.println(Colors.ANSI_RED + "Error: Insufficient funds" + Colors.ANSI_RESET);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+    public void setWishlist(ArrayList<Integer> wishlist) {
+        this.wishlist = wishlist;
     }
-    public void printOrders(Connection conn) {
-        System.out.println(Colors.ANSI_RED + "Your orders: " + Colors.ANSI_RESET);
-        for (int productId : orders) {
-            System.out.print(new Database().getProductById(conn, productId));
-        }
+
+    public void setCart(ArrayList<Integer> cart) {
+        this.cart = cart;
     }
-    public void printWishlist(Connection conn) {
-        System.out.println(Colors.ANSI_BOLD + "Your wishlist: " + Colors.ANSI_RESET);
-        for (int productId : wishlist) {
-            System.out.print(new Database().getProductById(conn, productId));
-        }
+
+    public void setWallet(float amount) {
+        this.wallet += amount;
     }
-    public void printCart(Connection conn) {
-        System.out.println(Colors.ANSI_BOLD + "Your cart: " + Colors.ANSI_RESET);
-        for (int productId : cart) {
-            System.out.print(new Database().getProductById(conn, productId));
-        }
+
+    public ArrayList<Integer> getOrders() {
+        return orders;
     }
-    public void topUpMoney(Connection conn, float amount) {
-        wallet += Math.abs(amount);
-        try {
-            String query = String.format("update users set wallet='%f' where id='%d'", wallet, super.getId());
-            Statement statement = conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println(Colors.ANSI_GREEN + "+" + amount + "$ to your wallet" + Colors.ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+
+    public ArrayList<Integer> getWishlist() {
+        return wishlist;
     }
-    public void withdrawMoney(Connection conn, float amount) {
-        wallet -= Math.abs(amount);
-        try {
-            String query = String.format("update users set wallet='%f' where id='%d'", wallet, super.getId());
-            Statement statement = conn.createStatement();
-            statement.executeUpdate(query);
-            System.out.println(Colors.ANSI_GREEN + "-" + amount + "$ from your wallet" + Colors.ANSI_RESET);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+
+    public ArrayList<Integer> getCart() {
+        return cart;
     }
-    public void printCash() {
-        System.out.println(Colors.ANSI_BOLD + "Your cash: " + wallet + "$" + Colors.ANSI_RESET);
+
+    public float getWallet() {
+        return wallet;
     }
+
+    @Override
     public String toString() {
-        return "Username: " + getUsername() + "\n" + "email: " + getEmail() + "\n" + Colors.ANSI_BOLD + "Your cash: " + wallet + "$" + Colors.ANSI_RESET;
+        return "Username: " + getUsername() + "\nemail: " + getEmail() + "\n" + "Your cash: " + wallet + "$";
     }
-    public void setOrders(ArrayList<Integer> orders) {this.orders = orders;}
-    public void setWishlist(ArrayList<Integer> wishlist) {this.wishlist = wishlist;}
-    public void setCart(ArrayList<Integer> cart) {this.cart = cart;}
-    public void setWallet(float amount) {this.wallet = amount;}
-    public ArrayList<Integer> getOrders() {return orders;}
-    public ArrayList<Integer> getWishlist() {return wishlist;}
-    public ArrayList<Integer> getCart() {return cart;}
-    public float getWallet() {return wallet;}
-
 }
