@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public interface Hasher {
-      default String hashPassword(String password) {
+      default String getHashPassword(String password) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(password.getBytes());
